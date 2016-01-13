@@ -60,7 +60,7 @@
 	    view.board.checkApple();
 	    view.render();
 	  };
-	  setInterval(callback, 50);
+	  setInterval(callback, 200);
 	})();
 
 
@@ -115,26 +115,36 @@
 	  return [pos1[0] + direction[0], pos1[1] + direction[1]];
 	};
 	
+	Snake.prototype.includedInPositions = function (pos1, positions) {
+	  for (var i = 0; i < positions.length; i++){
+	    var random_snake = new Snake();
+	    if (random_snake.equal(pos1, positions[i])) {
+	      return true;
+	    }
+	  }
+	  return false;
+	};
+	
 	Snake.prototype.equal = function (pos1, pos2) {
 	  return (pos1[0] === pos2[0] && pos1[1] === pos2[1]);
 	};
 	
 	var Board = function () {
 	  this.grid = [];
-	  for (var i = 0; i < 50; i++) {
-	    this.grid.push(new Array(50));
+	  for (var i = 0; i < 20; i++) {
+	    this.grid.push(new Array(20));
 	  }
 	  this.snake = new Snake();
 	  this.apple = this.setApple();
 	};
 	Board.prototype.setApple = function () {
-	  return [parseInt(Math.random() * 50),parseInt(Math.random() * 50)];
+	  return [parseInt(Math.random() * 20),parseInt(Math.random() * 20)];
 	};
 	
 	Board.prototype.checkApple = function () {
 	  if (this.snake.equal(this.snake.head, this.apple)) {
 	    this.snake.segments.push(this.snake.lastPosition);
-	    console.log(this.snake.segments);
+	    this.apple = this.setApple();
 	  }
 	};
 	
@@ -154,29 +164,29 @@
 	
 	View.prototype.bindEvents = function () {
 	  snake = this.board.snake;
-	  key('left', function () {
-	    snake.turn("W");
-	  });
-	      key('right', function () {
-	        snake.turn("E");
+	    key('left', function () {
+	      snake.turn("W");
+	    });
 	
-	      });
-	      key('up', function () {
-	        snake.turn("N");
+	    key('right', function () {
+	      snake.turn("E");
+	    });
 	
-	      });
-	      key('down', function () {
+	    key('up', function () {
+	      snake.turn("N");
 	
-	        snake.turn("S");
-	      });
+	    });
+	    key('down', function () {
+	      snake.turn("S");
+	    });
 	};
 	
 	
 	View.prototype.setupGrid = function () {
 	  this.$el.append("<ul>");
 	  var $ul = $("<ul>").addClass("snake-grid group");
-	  for (var i = 0; i < 2500; i++) {
-	    var pos = [parseInt(i / 50), i % 50];
+	  for (var i = 0; i < 400; i++) {
+	    var pos = [parseInt(i / 20), i % 20];
 	    $("<li>").addClass("open").data("pos", pos).appendTo($ul);
 	  }
 	  this.$el.html($ul);
@@ -189,7 +199,7 @@
 	  $('li').each(function (i, el) {
 	    pos = $(el).data("pos");
 	    for(var j=0; j < positions.length; j++) {
-	      if (snake.equal(pos,positions[j])) {
+	      if (snake.includedInPositions(pos, positions)) {
 	        $(el).removeClass().addClass('has-snake');
 	      }
 	      else if (snake.equal(pos, board.apple)) {

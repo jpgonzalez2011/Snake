@@ -45,26 +45,36 @@ Snake.prototype.plus = function (pos1, direction) {
   return [pos1[0] + direction[0], pos1[1] + direction[1]];
 };
 
+Snake.prototype.includedInPositions = function (pos1, positions) {
+  for (var i = 0; i < positions.length; i++){
+    var random_snake = new Snake();
+    if (random_snake.equal(pos1, positions[i])) {
+      return true;
+    }
+  }
+  return false;
+};
+
 Snake.prototype.equal = function (pos1, pos2) {
   return (pos1[0] === pos2[0] && pos1[1] === pos2[1]);
 };
 
 var Board = function () {
   this.grid = [];
-  for (var i = 0; i < 50; i++) {
-    this.grid.push(new Array(50));
+  for (var i = 0; i < 20; i++) {
+    this.grid.push(new Array(20));
   }
   this.snake = new Snake();
   this.apple = this.setApple();
 };
 Board.prototype.setApple = function () {
-  return [parseInt(Math.random() * 50),parseInt(Math.random() * 50)];
+  return [parseInt(Math.random() * 20),parseInt(Math.random() * 20)];
 };
 
 Board.prototype.checkApple = function () {
   if (this.snake.equal(this.snake.head, this.apple)) {
     this.snake.segments.push(this.snake.lastPosition);
-    console.log(this.snake.segments);
+    this.apple = this.setApple();
   }
 };
 

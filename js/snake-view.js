@@ -7,29 +7,29 @@ var View = function (board, $el) {
 
 View.prototype.bindEvents = function () {
   snake = this.board.snake;
-  key('left', function () {
-    snake.turn("W");
-  });
-      key('right', function () {
-        snake.turn("E");
+    key('left', function () {
+      snake.turn("W");
+    });
 
-      });
-      key('up', function () {
-        snake.turn("N");
+    key('right', function () {
+      snake.turn("E");
+    });
 
-      });
-      key('down', function () {
+    key('up', function () {
+      snake.turn("N");
 
-        snake.turn("S");
-      });
+    });
+    key('down', function () {
+      snake.turn("S");
+    });
 };
 
 
 View.prototype.setupGrid = function () {
   this.$el.append("<ul>");
   var $ul = $("<ul>").addClass("snake-grid group");
-  for (var i = 0; i < 2500; i++) {
-    var pos = [parseInt(i / 50), i % 50];
+  for (var i = 0; i < 400; i++) {
+    var pos = [parseInt(i / 20), i % 20];
     $("<li>").addClass("open").data("pos", pos).appendTo($ul);
   }
   this.$el.html($ul);
@@ -42,7 +42,7 @@ View.prototype.render = function () {
   $('li').each(function (i, el) {
     pos = $(el).data("pos");
     for(var j=0; j < positions.length; j++) {
-      if (snake.equal(pos,positions[j])) {
+      if (snake.includedInPositions(pos, positions)) {
         $(el).removeClass().addClass('has-snake');
       }
       else if (snake.equal(pos, board.apple)) {
