@@ -4,8 +4,9 @@
   var SnakeBoard = require("./snake.js");
   var SnakeView = require("./snake-view.js");
   var board = new SnakeBoard();
-  var rootEl = $('.snake').on("click", function gameplay (e) {
-    setInterval(callback, 100);
+  var gameplay;
+  var rootEl = $('.snake').on("click", function startGame (e) {
+    gameplay = setInterval(callback, 50);
     $(e.currentTarget).off("click")
   }.bind(this));
   var view = new SnakeView(board, rootEl);
@@ -21,5 +22,4 @@
       gameplay = 0;
     }
   };
-  // var gameplay = setInterval(callback, 100);
 })();

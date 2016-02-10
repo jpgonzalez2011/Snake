@@ -50,8 +50,9 @@
 	  var SnakeBoard = __webpack_require__(1);
 	  var SnakeView = __webpack_require__(2);
 	  var board = new SnakeBoard();
-	  var rootEl = $('.snake').on("click", function gameplay (e) {
-	    setInterval(callback, 100);
+	  var gameplay;
+	  var rootEl = $('.snake').on("click", function startGame (e) {
+	    gameplay = setInterval(callback, 50);
 	    $(e.currentTarget).off("click")
 	  }.bind(this));
 	  var view = new SnakeView(board, rootEl);
@@ -67,7 +68,6 @@
 	      gameplay = 0;
 	    }
 	  };
-	  // var gameplay = setInterval(callback, 100);
 	})();
 
 
