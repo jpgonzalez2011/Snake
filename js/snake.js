@@ -18,7 +18,18 @@ Snake.prototype.move = function () {
   } else if (this.direction === "S") {
     this.segments[0] = this.plus(this.head, [1, 0]);
   }
+  if (this.segments[0][0] > 19){
+    this.segments[0][0] = 0;
+  } else if (this.segments[0][0] < 0) {
+    this.segments[0][0] = 19;
+  } else if (this.segments[0][1] > 19) {
+    this.segments[0][1] = 0;
+  } else if (this.segments[0][1] < 0) {
+    this.segments[0][1] = 19;
+  }
+
   this.head = this.segments[0];
+
 };
 
 Snake.prototype.turn = function (direction) {

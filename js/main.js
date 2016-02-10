@@ -14,5 +14,5 @@
     view.board.checkApple();
     view.render();
   };
-  setInterval(callback, 200);
+  setInterval(callback, 100);
 })();
