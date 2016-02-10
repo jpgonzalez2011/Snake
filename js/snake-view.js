@@ -1,4 +1,4 @@
-var Board = require("./snake.js");
+var Board = require("./snake.js")
 
 var View = function (board, $el) {
   this.board = board;
@@ -28,8 +28,8 @@ View.prototype.bindEvents = function () {
 View.prototype.setupGrid = function () {
   this.$el.append("<ul>");
   var $ul = $("<ul>").addClass("snake-grid group");
-  for (var i = 0; i < 400; i++) {
-    var pos = [parseInt(i / 20), i % 20];
+  for (var i = 0; i < 2500; i++) {
+    var pos = [parseInt(i / 50), i % 50];
     $("<li>").addClass("open").data("pos", pos).appendTo($ul);
   }
   this.$el.html($ul);
@@ -39,19 +39,16 @@ View.prototype.render = function () {
   var board = this.board;
   var snake = board.snake;
   var positions = snake.segments;
-  $('li').each(function (i, el) {
-    pos = $(el).data("pos");
-    for(var j=0; j < positions.length; j++) {
-      if (snake.includedInPositions(pos, positions)) {
-        $(el).removeClass().addClass('has-snake');
-      }
-      else if (snake.equal(pos, board.apple)) {
-        $(el).removeClass().addClass('apple');
-      } else {
-        $(el).removeClass().addClass('open');
-      }
-    }
-  });
+  debugger
+  $('li').removeClass().addClass('open');
+  apple_pos = board.apple;
+  apple_idx = apple_pos[0] * 50 + apple_pos[1] % 50;
+  $($('li')[apple_idx]).removeClass().addClass('apple');
+  for (var j = 0; j < positions.length; j++) {
+    pos = positions[j];
+    li_idx = pos[0] * 50 + pos[1] % 50;
+    $($('li')[li_idx]).removeClass().addClass('has-snake');
+  }
 };
 
 module.exports = View;

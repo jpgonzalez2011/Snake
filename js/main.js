@@ -13,6 +13,10 @@
     view.board.snake.move();
     view.board.checkApple();
     view.render();
+    if (view.board.checkGameOver()) {
+      clearInterval(gameplay);
+      gameplay = 0;
+    }
   };
-  setInterval(callback, 100);
+  var gameplay = setInterval(callback, 100);
 })();

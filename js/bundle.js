@@ -59,8 +59,12 @@
 	    view.board.snake.move();
 	    view.board.checkApple();
 	    view.render();
+	    if (view.board.checkGameOver()) {
+	      clearInterval(gameplay);
+	      gameplay = 0;
+	    }
 	  };
-	  setInterval(callback, 100);
+	  var gameplay = setInterval(callback, 100);
 	})();
 
 
@@ -88,14 +92,14 @@
 	  } else if (this.direction === "S") {
 	    this.segments[0] = this.plus(this.head, [1, 0]);
 	  }
-	  if (this.segments[0][0] > 19){
+	  if (this.segments[0][0] > 49){
 	    this.segments[0][0] = 0;
 	  } else if (this.segments[0][0] < 0) {
-	    this.segments[0][0] = 19;
-	  } else if (this.segments[0][1] > 19) {
+	    this.segments[0][0] = 49;
+	  } else if (this.segments[0][1] > 49) {
 	    this.segments[0][1] = 0;
 	  } else if (this.segments[0][1] < 0) {
-	    this.segments[0][1] = 19;
+	    this.segments[0][1] = 49;
 	  }
 	
 	  this.head = this.segments[0];
@@ -142,14 +146,15 @@
 	
 	var Board = function () {
 	  this.grid = [];
-	  for (var i = 0; i < 20; i++) {
-	    this.grid.push(new Array(20));
+	  for (var i = 0; i < 50; i++) {
+	    this.grid.push(new Array(50));
 	  }
 	  this.snake = new Snake();
 	  this.apple = this.setApple();
 	};
+	
 	Board.prototype.setApple = function () {
-	  return [parseInt(Math.random() * 20),parseInt(Math.random() * 20)];
+	  return [parseInt(Math.random() * 50),parseInt(Math.random() * 50)];
 	};
 	
 	Board.prototype.checkApple = function () {
@@ -159,6 +164,15 @@
 	  }
 	};
 	
+	Board.prototype.checkGameOver = function () {
+	  for (var i = 1; i < this.snake.segments.length; i++) {
+	    if (this.snake.equal(this.snake.head, this.snake.segments[i])) {
+	      return true
+	    }
+	  }
+	  return false
+	};
+	
 	module.exports = Board;
 
 
@@ -166,7 +180,7 @@
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Board = __webpack_require__(1);
+	var Board = __webpack_require__(1)
 	
 	var View = function (board, $el) {
 	  this.board = board;
@@ -196,8 +210,8 @@
 	View.prototype.setupGrid = function () {
 	  this.$el.append("<ul>");
 	  var $ul = $("<ul>").addClass("snake-grid group");
-	  for (var i = 0; i < 400; i++) {
-	    var pos = [parseInt(i / 20), i % 20];
+	  for (var i = 0; i < 2500; i++) {
+	    var pos = [parseInt(i / 50), i % 50];
 	    $("<li>").addClass("open").data("pos", pos).appendTo($ul);
 	  }
 	  this.$el.html($ul);
@@ -207,19 +221,16 @@
 	  var board = this.board;
 	  var snake = board.snake;
 	  var positions = snake.segments;
-	  $('li').each(function (i, el) {
-	    pos = $(el).data("pos");
-	    for(var j=0; j < positions.length; j++) {
-	      if (snake.includedInPositions(pos, positions)) {
-	        $(el).removeClass().addClass('has-snake');
-	      }
-	      else if (snake.equal(pos, board.apple)) {
-	        $(el).removeClass().addClass('apple');
-	      } else {
-	        $(el).removeClass().addClass('open');
-	      }
-	    }
-	  });
+	  debugger
+	  $('li').removeClass().addClass('open');
+	  apple_pos = board.apple;
+	  apple_idx = apple_pos[0] * 50 + apple_pos[1] % 50;
+	  $($('li')[apple_idx]).removeClass().addClass('apple');
+	  for (var j = 0; j < positions.length; j++) {
+	    pos = positions[j];
+	    li_idx = pos[0] * 50 + pos[1] % 50;
+	    $($('li')[li_idx]).removeClass().addClass('has-snake');
+	  }
 	};
 	
 	module.exports = View;

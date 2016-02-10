@@ -18,14 +18,14 @@ Snake.prototype.move = function () {
   } else if (this.direction === "S") {
     this.segments[0] = this.plus(this.head, [1, 0]);
   }
-  if (this.segments[0][0] > 19){
+  if (this.segments[0][0] > 49){
     this.segments[0][0] = 0;
   } else if (this.segments[0][0] < 0) {
-    this.segments[0][0] = 19;
-  } else if (this.segments[0][1] > 19) {
+    this.segments[0][0] = 49;
+  } else if (this.segments[0][1] > 49) {
     this.segments[0][1] = 0;
   } else if (this.segments[0][1] < 0) {
-    this.segments[0][1] = 19;
+    this.segments[0][1] = 49;
   }
 
   this.head = this.segments[0];
@@ -72,14 +72,15 @@ Snake.prototype.equal = function (pos1, pos2) {
 
 var Board = function () {
   this.grid = [];
-  for (var i = 0; i < 20; i++) {
-    this.grid.push(new Array(20));
+  for (var i = 0; i < 50; i++) {
+    this.grid.push(new Array(50));
   }
   this.snake = new Snake();
   this.apple = this.setApple();
 };
+
 Board.prototype.setApple = function () {
-  return [parseInt(Math.random() * 20),parseInt(Math.random() * 20)];
+  return [parseInt(Math.random() * 50),parseInt(Math.random() * 50)];
 };
 
 Board.prototype.checkApple = function () {
@@ -87,6 +88,15 @@ Board.prototype.checkApple = function () {
     this.snake.segments.push(this.snake.lastPosition);
     this.apple = this.setApple();
   }
+};
+
+Board.prototype.checkGameOver = function () {
+  for (var i = 1; i < this.snake.segments.length; i++) {
+    if (this.snake.equal(this.snake.head, this.snake.segments[i])) {
+      return true
+    }
+  }
+  return false
 };
 
 module.exports = Board;
