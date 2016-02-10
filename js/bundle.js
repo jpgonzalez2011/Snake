@@ -50,9 +50,10 @@
 	  var SnakeBoard = __webpack_require__(1);
 	  var SnakeView = __webpack_require__(2);
 	  var board = new SnakeBoard();
-	  var rootEl = $('.snake').click(function gameplay () {
+	  var rootEl = $('.snake').on("click", function gameplay (e) {
 	    setInterval(callback, 100);
-	  });
+	    $(e.currentTarget).off("click")
+	  }.bind(this));
 	  var view = new SnakeView(board, rootEl);
 	
 	  view.setupGrid();
@@ -223,7 +224,6 @@
 	  var board = this.board;
 	  var snake = board.snake;
 	  var positions = snake.segments;
-	  debugger
 	  $('li').removeClass().addClass('open');
 	  apple_pos = board.apple;
 	  apple_idx = apple_pos[0] * 50 + apple_pos[1] % 50;

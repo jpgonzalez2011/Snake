@@ -39,7 +39,6 @@ View.prototype.render = function () {
   var board = this.board;
   var snake = board.snake;
   var positions = snake.segments;
-  debugger
   $('li').removeClass().addClass('open');
   apple_pos = board.apple;
   apple_idx = apple_pos[0] * 50 + apple_pos[1] % 50;

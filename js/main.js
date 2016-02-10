@@ -4,9 +4,10 @@
   var SnakeBoard = require("./snake.js");
   var SnakeView = require("./snake-view.js");
   var board = new SnakeBoard();
-  var rootEl = $('.snake').click(function gameplay () {
+  var rootEl = $('.snake').on("click", function gameplay (e) {
     setInterval(callback, 100);
-  });
+    $(e.currentTarget).off("click")
+  }.bind(this));
   var view = new SnakeView(board, rootEl);
 
   view.setupGrid();
