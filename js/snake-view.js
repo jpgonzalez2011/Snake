@@ -13,30 +13,30 @@ View.prototype.bindEvents = function () {
 
     key('left', function () {
       snake.turn("W");
-      setTimeout(50, enemySnake.turn("E"));
-      setTimeout(50, enemySnake2.turn("W"));
-      setTimeout(50, enemySnake3.turn("E"));
+      enemySnake.turn("E");
+      enemySnake2.turn("W");
+      enemySnake3.turn("E");
     });
 
     key('right', function () {
       snake.turn("E");
-      setTimeout(50, enemySnake.turn("S"));
-      setTimeout(50, enemySnake2.turn("E"));
-      setTimeout(50, enemySnake3.turn("W"));
+      enemySnake.turn("S");
+      enemySnake2.turn("E");
+      enemySnake3.turn("W");
     });
 
     key('up', function () {
       snake.turn("N");
-      setTimeout(50, enemySnake.turn("W"));
-      setTimeout(50, enemySnake2.turn("N"));
-      setTimeout(50, enemySnake3.turn("S"));
+      enemySnake.turn("W");
+      enemySnake2.turn("N");
+      enemySnake3.turn("S");
 
     });
     key('down', function () {
       snake.turn("S");
-      setTimeout(50, enemySnake.turn("N"));
-      setTimeout(50, enemySnake2.turn("S"));
-      setTimeout(50, enemySnake3.turn("N"));
+      enemySnake.turn("N");
+      enemySnake2.turn("S");
+      enemySnake3.turn("N");
     });
 };
 

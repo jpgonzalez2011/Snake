@@ -6,7 +6,7 @@
   var board = new SnakeBoard();
   var gameplay;
   var rootEl = $('.snake').on("click", function startGame (e) {
-    gameplay = setInterval(callback, 50);
+    gameplay = setInterval(callback, 60);
     $(e.currentTarget).off("click")
   }.bind(this));
   var view = new SnakeView(board, rootEl);

@@ -17,17 +17,18 @@ h1 {
 }
 
 li {
-  height: 10px;
-  width: 10px;
+  height: 12px;
+  width: 12px;
   display: block;
   float: left;
 }
 
 ul {
   border: 1px solid black;
-  width: 500px;
+  width: 600px;
   margin: auto;
   list-style: none;
+  background: yellow;
 }
 
 .group:after {
