@@ -40,6 +40,10 @@ ul {
   background: black;
 }
 
+.own-snake {
+  background: green;
+}
+
 .apple {
   background: red;
 }

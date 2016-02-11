@@ -61,6 +61,9 @@
 	  var callback = function () {
 	    view.bindEvents();
 	    view.board.snake.move();
+	    view.board.enemySnake.move();
+	    view.board.enemySnake2.move();
+	    view.board.enemySnake3.move();
 	    view.board.checkApple();
 	    view.render();
 	    if (view.board.checkGameOver()) {
@@ -75,9 +78,9 @@
 /* 1 */
 /***/ function(module, exports) {
 
-	var Snake = function () {
-	  this.direction = "N";
-	  this.segments = [[10,10]];
+	var Snake = function (properties) {
+	  this.direction = properties.direction;
+	  this.segments = properties.segments;
 	  this.head = this.segments[0];
 	};
 	
@@ -152,7 +155,10 @@
 	  for (var i = 0; i < 50; i++) {
 	    this.grid.push(new Array(50));
 	  }
-	  this.snake = new Snake();
+	  this.snake = new Snake({direction: "N", segments: [[25,25]]});
+	  this.enemySnake = new Snake({direction: "S", segments: [[10,10]]});
+	  this.enemySnake2 = new Snake({direction: "W", segments: [[49,49]]});
+	  this.enemySnake3 = new Snake({direction: "E", segments: [[49,10]]})
 	  this.apple = this.setApple();
 	};
 	
@@ -163,6 +169,9 @@
 	Board.prototype.checkApple = function () {
 	  if (this.snake.equal(this.snake.head, this.apple)) {
 	    this.snake.segments.push(this.snake.lastPosition);
+	    this.enemySnake.segments.push(this.enemySnake.lastPosition);
+	    this.enemySnake2.segments.push(this.enemySnake2.lastPosition);
+	    this.enemySnake3.segments.push(this.enemySnake3.lastPosition);
 	    this.apple = this.setApple();
 	  }
 	};
@@ -170,10 +179,22 @@
 	Board.prototype.checkGameOver = function () {
 	  for (var i = 1; i < this.snake.segments.length; i++) {
 	    if (this.snake.equal(this.snake.head, this.snake.segments[i])) {
-	      return true
+	      return true;
+	    } else if (this.snake.equal(this.snake.head, this.enemySnake.segments[i])) {
+	      return true;
+	    } else if (this.snake.equal(this.snake.head, this.enemySnake2.segments[i])) {
+	      return true;
+	    } else if (this.enemySnake.equal(this.enemySnake.head, this.snake.segments[i])) {
+	      return true;
+	    } else if (this.enemySnake2.equal(this.enemySnake2.head, this.snake.segments[i])) {
+	      return true;
+	    } else if (this.snake.equal(this.snake.head, this.enemySnake3.segments[i])) {
+	      return true;
+	    } else if (this.enemySnake3.equal(this.enemySnake3.head, this.snake.segments[i])) {
+	      return true;
 	    }
 	  }
-	  return false
+	  return false;
 	};
 	
 	module.exports = Board;
@@ -191,21 +212,36 @@
 	};
 	
 	View.prototype.bindEvents = function () {
-	  snake = this.board.snake;
+	  var snake = this.board.snake;
+	  var enemySnake = this.board.enemySnake;
+	  var enemySnake2 = this.board.enemySnake2;
+	
 	    key('left', function () {
 	      snake.turn("W");
+	      enemySnake.turn("E");
+	      enemySnake2.turn("W");
+	      enemySnake3.turn("E");
 	    });
 	
 	    key('right', function () {
 	      snake.turn("E");
+	      enemySnake.turn("S");
+	      enemySnake2.turn("E");
+	      enemySnake3.turn("W");
 	    });
 	
 	    key('up', function () {
 	      snake.turn("N");
+	      enemySnake.turn("W");
+	      enemySnake2.turn("N");
+	      enemySnake3.turn("S");
 	
 	    });
 	    key('down', function () {
 	      snake.turn("S");
+	      enemySnake.turn("N");
+	      enemySnake2.turn("S");
+	      enemySnake3.turn("N");
 	    });
 	};
 	
@@ -223,13 +259,22 @@
 	View.prototype.render = function () {
 	  var board = this.board;
 	  var snake = board.snake;
-	  var positions = snake.segments;
+	  var enemySnake = board.enemySnake;
+	  var enemySnake2 = board.enemySnake2;
+	  var enemySnake3 = board.enemySnake3;
+	  var mySnakePositions = snake.segments
+	  var enemySnakePositions = enemySnake.segments.concat(enemySnake2.segments).concat(enemySnake3.segments);
 	  $('li').removeClass().addClass('open');
 	  apple_pos = board.apple;
 	  apple_idx = apple_pos[0] * 50 + apple_pos[1] % 50;
 	  $($('li')[apple_idx]).removeClass().addClass('apple');
-	  for (var j = 0; j < positions.length; j++) {
-	    pos = positions[j];
+	  for (var j = 0; j < mySnakePositions.length; j++) {
+	    pos = mySnakePositions[j];
+	    li_idx = pos[0] * 50 + pos[1] % 50;
+	    $($('li')[li_idx]).removeClass().addClass('own-snake');
+	  }
+	  for (var k = 0; k < enemySnakePositions.length; k++) {
+	    pos = enemySnakePositions[k];
 	    li_idx = pos[0] * 50 + pos[1] % 50;
 	    $($('li')[li_idx]).removeClass().addClass('has-snake');
 	  }
