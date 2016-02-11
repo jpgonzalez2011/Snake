@@ -6,8 +6,8 @@
   var board = new SnakeBoard();
   var gameplay;
   var rootEl = $('.snake').on("click", function startGame (e) {
+    $('.instructions').hide();
     board.reset();
-    $(e.currentTarget).removeClass("instructions")
     gameplay = setInterval(callback, 60);
     $(e.currentTarget).off("click")
   }.bind(this));
@@ -25,9 +25,10 @@
     view.render();
     if (view.board.checkGameOver()) {
       clearInterval(gameplay);
+      $('.gameover').show();
       $('.snake').on("click", function startGame (e) {
         board.reset();
-        $(e.currentTarget).removeClass("instructions")
+        $('.gameover').hide();
         gameplay = setInterval(callback, 60);
         $(e.currentTarget).off("click")
       }.bind(this));

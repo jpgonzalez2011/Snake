@@ -52,8 +52,8 @@
 	  var board = new SnakeBoard();
 	  var gameplay;
 	  var rootEl = $('.snake').on("click", function startGame (e) {
+	    $('.instructions').hide();
 	    board.reset();
-	    $(e.currentTarget).removeClass("instructions")
 	    gameplay = setInterval(callback, 60);
 	    $(e.currentTarget).off("click")
 	  }.bind(this));
@@ -71,9 +71,10 @@
 	    view.render();
 	    if (view.board.checkGameOver()) {
 	      clearInterval(gameplay);
+	      $('.gameover').show();
 	      $('.snake').on("click", function startGame (e) {
 	        board.reset();
-	        $(e.currentTarget).removeClass("instructions")
+	        $('.gameover').hide();
 	        gameplay = setInterval(callback, 60);
 	        $(e.currentTarget).off("click")
 	      }.bind(this));
@@ -273,6 +274,8 @@
 	View.prototype.setupGrid = function () {
 	  this.$el.append("<ul>");
 	  var $ul = $("<ul>").addClass("snake-grid group");
+	  $("<figure>").addClass("instructions").html("<h1> Click to Start </h1> <h2> Collect red dots, don't let your head touch other snakes! </h2> <h3> Up Down Left Right Arrows to Turn! </h3>").appendTo($ul);
+	  $("<figure>").addClass("gameover").html("<h1> Game Over! </h1> <h2> Click to play again! </h2>").hide().appendTo($ul);
 	  for (var i = 0; i < 2500; i++) {
 	    var pos = [parseInt(i / 50), i % 50];
 	    $("<li>").addClass("open").data("pos", pos).appendTo($ul);

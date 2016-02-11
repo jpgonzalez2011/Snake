@@ -49,6 +49,8 @@ View.prototype.bindEvents = function () {
 View.prototype.setupGrid = function () {
   this.$el.append("<ul>");
   var $ul = $("<ul>").addClass("snake-grid group");
+  $("<figure>").addClass("instructions").html("<h1> Click to Start </h1> <h2> Collect red dots, don't let your head touch other snakes! </h2> <h3> Up Down Left Right Arrows to Turn! </h3>").appendTo($ul);
+  $("<figure>").addClass("gameover").html("<h1> Game Over! </h1> <h2> Click to play again! </h2>").hide().appendTo($ul);
   for (var i = 0; i < 2500; i++) {
     var pos = [parseInt(i / 50), i % 50];
     $("<li>").addClass("open").data("pos", pos).appendTo($ul);
