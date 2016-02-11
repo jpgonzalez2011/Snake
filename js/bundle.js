@@ -52,6 +52,7 @@
 	  var board = new SnakeBoard();
 	  var gameplay;
 	  var rootEl = $('.snake').on("click", function startGame (e) {
+	    $(e.currentTarget).removeClass("instructions");
 	    gameplay = setInterval(callback, 60);
 	    $(e.currentTarget).off("click")
 	  }.bind(this));

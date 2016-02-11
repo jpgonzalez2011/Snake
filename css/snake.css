@@ -10,26 +10,27 @@ html, h1, h2, body, head, figure, ul, li {
 
 }
 
-h1 {
+.title {
   text-align: center;
   font-size: 36px;
   padding: 20px;
 }
 
-li {
-  height: 10px;
-  width: 10px;
-  display: block;
-  float: left;
-  border: 1px solid orange;
-}
-
-ul {
+.snake-grid {
   border: 1px solid black;
   width: 600px;
   margin: auto;
   list-style: none;
-  background: yellow;
+  background: black;
+}
+
+
+.snake-grid > li {
+  height: 10px;
+  width: 10px;
+  display: block;
+  float: left;
+  border: 1px solid darkblue;
 }
 
 .group:after {
@@ -39,17 +40,28 @@ ul {
 }
 
 .has-snake {
-  background: black;
+  background: yellow;
 }
 
 .own-snake {
-  background: green;
+  background: lightgreen;
 }
 
 .own-snake-head {
-  background: lightgreen;
+  background: green;
 }
 
 .apple {
   background: red;
+}
+
+.instructions {
+  background: green;
+  width: 600px;
+  height: 600px;
+  margin: auto;
+}
+
+.instructions > ul {
+  display: none;
 }
