@@ -3,19 +3,16 @@
   window.Snake = window.Snake || {};
   var SnakeBoard = require("./snake.js");
   var SnakeView = require("./snake-view.js");
-  var gameplay;
   var board = new SnakeBoard();
-  var view = new SnakeView(board, rootEl);
-  var rootEl = $('.snake').on("click", startGame);
-  view.setupGrid();
-
-
-  var startGame = function (e) {
-    $(e.currentTarget).removeClass("instructions");
+  var gameplay;
+  var rootEl = $('.snake').on("click", function startGame (e) {
+    $(e.currentTarget).removeClass("instructions")
     gameplay = setInterval(callback, 60);
     $(e.currentTarget).off("click")
-  };
+  }.bind(this));
+  var view = new SnakeView(board, rootEl);
 
+  view.setupGrid();
   var callback = function () {
     view.bindEvents();
     view.board.snake.move();
@@ -27,7 +24,7 @@
     view.render();
     if (view.board.checkGameOver()) {
       clearInterval(gameplay);
-      $('.snake').on("click", startGame);
+      gameplay = 0;
     }
   };
 })();
