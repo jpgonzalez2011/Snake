@@ -180,7 +180,10 @@
 	  for (var i = 1; i < this.snake.segments.length; i++) {
 	    if (this.snake.equal(this.snake.head, this.snake.segments[i])) {
 	      return true;
-	    } else if (this.snake.equal(this.snake.head, this.enemySnake.segments[i])) {
+	    }
+	  }
+	  for (i = 0; i < this.snake.segments.length; i++) {
+	      if (this.snake.equal(this.snake.head, this.enemySnake.segments[i])) {
 	      return true;
 	    } else if (this.snake.equal(this.snake.head, this.enemySnake2.segments[i])) {
 	      return true;
