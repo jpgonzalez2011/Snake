@@ -10,12 +10,14 @@ View.prototype.bindEvents = function () {
   var enemySnake = this.board.enemySnake;
   var enemySnake2 = this.board.enemySnake2;
   var enemySnake3 = this.board.enemySnake3;
+  var enemySnake4 = this.board.enemySnake4;
 
     key('left', function () {
       snake.turn("W");
       enemySnake.turn("E");
       enemySnake2.turn("W");
       enemySnake3.turn("E");
+      enemySnake4.turn("S");
     });
 
     key('right', function () {
@@ -23,6 +25,7 @@ View.prototype.bindEvents = function () {
       enemySnake.turn("S");
       enemySnake2.turn("E");
       enemySnake3.turn("W");
+      enemySnake4.turn("N");
     });
 
     key('up', function () {
@@ -30,6 +33,7 @@ View.prototype.bindEvents = function () {
       enemySnake.turn("W");
       enemySnake2.turn("N");
       enemySnake3.turn("S");
+      enemySnake4.turn("E");
 
     });
     key('down', function () {
@@ -37,6 +41,7 @@ View.prototype.bindEvents = function () {
       enemySnake.turn("N");
       enemySnake2.turn("S");
       enemySnake3.turn("N");
+      enemySnake4.turn("W");
     });
 };
 
@@ -57,8 +62,12 @@ View.prototype.render = function () {
   var enemySnake = board.enemySnake;
   var enemySnake2 = board.enemySnake2;
   var enemySnake3 = board.enemySnake3;
+  var enemySnake4 = board.enemySnake4;
   var mySnakePositions = snake.segments
-  var enemySnakePositions = enemySnake.segments.concat(enemySnake2.segments).concat(enemySnake3.segments);
+  var enemySnakePositions = enemySnake.segments
+                      .concat(enemySnake2.segments)
+                      .concat(enemySnake3.segments)
+                      .concat(enemySnake4.segments);
   var gamesquares = $('li').removeClass().addClass('open');
   apple_pos = board.apple;
   apple_idx = apple_pos[0] * 50 + apple_pos[1] % 50;
@@ -66,7 +75,11 @@ View.prototype.render = function () {
   for (var j = 0; j < mySnakePositions.length; j++) {
     pos = mySnakePositions[j];
     li_idx = pos[0] * 50 + pos[1] % 50;
-    $(gamesquares[li_idx]).removeClass().addClass('own-snake');
+    if (j === 0) {
+      $(gamesquares[li_idx]).removeClass().addClass('own-snake-head')
+    } else {
+      $(gamesquares[li_idx]).removeClass().addClass('own-snake');
+    }
   }
   for (var k = 0; k < enemySnakePositions.length; k++) {
     pos = enemySnakePositions[k];

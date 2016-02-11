@@ -17,10 +17,11 @@ h1 {
 }
 
 li {
-  height: 12px;
-  width: 12px;
+  height: 10px;
+  width: 10px;
   display: block;
   float: left;
+  border: 1px solid orange;
 }
 
 ul {
@@ -43,6 +44,10 @@ ul {
 
 .own-snake {
   background: green;
+}
+
+.own-snake-head {
+  background: lightgreen;
 }
 
 .apple {

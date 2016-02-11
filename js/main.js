@@ -18,6 +18,7 @@
     view.board.enemySnake.move();
     view.board.enemySnake2.move();
     view.board.enemySnake3.move();
+    view.board.enemySnake4.move();
     view.board.checkApple();
     view.render();
     if (view.board.checkGameOver()) {

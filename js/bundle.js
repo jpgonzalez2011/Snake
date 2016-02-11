@@ -64,6 +64,7 @@
 	    view.board.enemySnake.move();
 	    view.board.enemySnake2.move();
 	    view.board.enemySnake3.move();
+	    view.board.enemySnake4.move();
 	    view.board.checkApple();
 	    view.render();
 	    if (view.board.checkGameOver()) {
@@ -158,7 +159,8 @@
 	  this.snake = new Snake({direction: "N", segments: [[25,25]]});
 	  this.enemySnake = new Snake({direction: "S", segments: [[10,10]]});
 	  this.enemySnake2 = new Snake({direction: "W", segments: [[49,49]]});
-	  this.enemySnake3 = new Snake({direction: "E", segments: [[49,10]]})
+	  this.enemySnake3 = new Snake({direction: "E", segments: [[49,10]]});
+	  this.enemySnake4 = new Snake({direction: "N", segments: [[10,49]]});
 	  this.apple = this.setApple();
 	};
 	
@@ -172,6 +174,7 @@
 	    this.enemySnake.segments.push(this.enemySnake.lastPosition);
 	    this.enemySnake2.segments.push(this.enemySnake2.lastPosition);
 	    this.enemySnake3.segments.push(this.enemySnake3.lastPosition);
+	    this.enemySnake4.segments.push(this.enemySnake4.lastPosition);
 	    this.apple = this.setApple();
 	  }
 	};
@@ -188,6 +191,8 @@
 	    } else if (this.snake.equal(this.snake.head, this.enemySnake2.segments[i])) {
 	      return true;
 	    } else if (this.snake.equal(this.snake.head, this.enemySnake3.segments[i])) {
+	      return true;
+	    } else if (this.snake.equal(this.snake.head, this.enemySnake4.segments[i])) {
 	      return true;
 	    }
 	  }
@@ -213,12 +218,14 @@
 	  var enemySnake = this.board.enemySnake;
 	  var enemySnake2 = this.board.enemySnake2;
 	  var enemySnake3 = this.board.enemySnake3;
+	  var enemySnake4 = this.board.enemySnake4;
 	
 	    key('left', function () {
 	      snake.turn("W");
 	      enemySnake.turn("E");
 	      enemySnake2.turn("W");
 	      enemySnake3.turn("E");
+	      enemySnake4.turn("S");
 	    });
 	
 	    key('right', function () {
@@ -226,6 +233,7 @@
 	      enemySnake.turn("S");
 	      enemySnake2.turn("E");
 	      enemySnake3.turn("W");
+	      enemySnake4.turn("N");
 	    });
 	
 	    key('up', function () {
@@ -233,6 +241,7 @@
 	      enemySnake.turn("W");
 	      enemySnake2.turn("N");
 	      enemySnake3.turn("S");
+	      enemySnake4.turn("E");
 	
 	    });
 	    key('down', function () {
@@ -240,6 +249,7 @@
 	      enemySnake.turn("N");
 	      enemySnake2.turn("S");
 	      enemySnake3.turn("N");
+	      enemySnake4.turn("W");
 	    });
 	};
 	
@@ -260,8 +270,12 @@
 	  var enemySnake = board.enemySnake;
 	  var enemySnake2 = board.enemySnake2;
 	  var enemySnake3 = board.enemySnake3;
+	  var enemySnake4 = board.enemySnake4;
 	  var mySnakePositions = snake.segments
-	  var enemySnakePositions = enemySnake.segments.concat(enemySnake2.segments).concat(enemySnake3.segments);
+	  var enemySnakePositions = enemySnake.segments
+	                      .concat(enemySnake2.segments)
+	                      .concat(enemySnake3.segments)
+	                      .concat(enemySnake4.segments);
 	  var gamesquares = $('li').removeClass().addClass('open');
 	  apple_pos = board.apple;
 	  apple_idx = apple_pos[0] * 50 + apple_pos[1] % 50;
@@ -269,7 +283,11 @@
 	  for (var j = 0; j < mySnakePositions.length; j++) {
 	    pos = mySnakePositions[j];
 	    li_idx = pos[0] * 50 + pos[1] % 50;
-	    $(gamesquares[li_idx]).removeClass().addClass('own-snake');
+	    if (j === 0) {
+	      $(gamesquares[li_idx]).removeClass().addClass('own-snake-head')
+	    } else {
+	      $(gamesquares[li_idx]).removeClass().addClass('own-snake');
+	    }
 	  }
 	  for (var k = 0; k < enemySnakePositions.length; k++) {
 	    pos = enemySnakePositions[k];

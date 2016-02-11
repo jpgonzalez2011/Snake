@@ -78,7 +78,8 @@ var Board = function () {
   this.snake = new Snake({direction: "N", segments: [[25,25]]});
   this.enemySnake = new Snake({direction: "S", segments: [[10,10]]});
   this.enemySnake2 = new Snake({direction: "W", segments: [[49,49]]});
-  this.enemySnake3 = new Snake({direction: "E", segments: [[49,10]]})
+  this.enemySnake3 = new Snake({direction: "E", segments: [[49,10]]});
+  this.enemySnake4 = new Snake({direction: "N", segments: [[10,49]]});
   this.apple = this.setApple();
 };
 
@@ -92,6 +93,7 @@ Board.prototype.checkApple = function () {
     this.enemySnake.segments.push(this.enemySnake.lastPosition);
     this.enemySnake2.segments.push(this.enemySnake2.lastPosition);
     this.enemySnake3.segments.push(this.enemySnake3.lastPosition);
+    this.enemySnake4.segments.push(this.enemySnake4.lastPosition);
     this.apple = this.setApple();
   }
 };
@@ -108,6 +110,8 @@ Board.prototype.checkGameOver = function () {
     } else if (this.snake.equal(this.snake.head, this.enemySnake2.segments[i])) {
       return true;
     } else if (this.snake.equal(this.snake.head, this.enemySnake3.segments[i])) {
+      return true;
+    } else if (this.snake.equal(this.snake.head, this.enemySnake4.segments[i])) {
       return true;
     }
   }
