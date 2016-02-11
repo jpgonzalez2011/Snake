@@ -184,13 +184,7 @@
 	      return true;
 	    } else if (this.snake.equal(this.snake.head, this.enemySnake2.segments[i])) {
 	      return true;
-	    } else if (this.enemySnake.equal(this.enemySnake.head, this.snake.segments[i])) {
-	      return true;
-	    } else if (this.enemySnake2.equal(this.enemySnake2.head, this.snake.segments[i])) {
-	      return true;
 	    } else if (this.snake.equal(this.snake.head, this.enemySnake3.segments[i])) {
-	      return true;
-	    } else if (this.enemySnake3.equal(this.enemySnake3.head, this.snake.segments[i])) {
 	      return true;
 	    }
 	  }
@@ -215,33 +209,34 @@
 	  var snake = this.board.snake;
 	  var enemySnake = this.board.enemySnake;
 	  var enemySnake2 = this.board.enemySnake2;
+	  var enemySnake3 = this.board.enemySnake3;
 	
 	    key('left', function () {
 	      snake.turn("W");
-	      enemySnake.turn("E");
-	      enemySnake2.turn("W");
-	      enemySnake3.turn("E");
+	      setTimeout(50, enemySnake.turn("E"));
+	      setTimeout(50, enemySnake2.turn("W"));
+	      setTimeout(50, enemySnake3.turn("E"));
 	    });
 	
 	    key('right', function () {
 	      snake.turn("E");
-	      enemySnake.turn("S");
-	      enemySnake2.turn("E");
-	      enemySnake3.turn("W");
+	      setTimeout(50, enemySnake.turn("S"));
+	      setTimeout(50, enemySnake2.turn("E"));
+	      setTimeout(50, enemySnake3.turn("W"));
 	    });
 	
 	    key('up', function () {
 	      snake.turn("N");
-	      enemySnake.turn("W");
-	      enemySnake2.turn("N");
-	      enemySnake3.turn("S");
+	      setTimeout(50, enemySnake.turn("W"));
+	      setTimeout(50, enemySnake2.turn("N"));
+	      setTimeout(50, enemySnake3.turn("S"));
 	
 	    });
 	    key('down', function () {
 	      snake.turn("S");
-	      enemySnake.turn("N");
-	      enemySnake2.turn("S");
-	      enemySnake3.turn("N");
+	      setTimeout(50, enemySnake.turn("N"));
+	      setTimeout(50, enemySnake2.turn("S"));
+	      setTimeout(50, enemySnake3.turn("N"));
 	    });
 	};
 	
@@ -264,19 +259,19 @@
 	  var enemySnake3 = board.enemySnake3;
 	  var mySnakePositions = snake.segments
 	  var enemySnakePositions = enemySnake.segments.concat(enemySnake2.segments).concat(enemySnake3.segments);
-	  $('li').removeClass().addClass('open');
+	  var gamesquares = $('li').removeClass().addClass('open');
 	  apple_pos = board.apple;
 	  apple_idx = apple_pos[0] * 50 + apple_pos[1] % 50;
-	  $($('li')[apple_idx]).removeClass().addClass('apple');
+	  $(gamesquares[apple_idx]).removeClass().addClass('apple');
 	  for (var j = 0; j < mySnakePositions.length; j++) {
 	    pos = mySnakePositions[j];
 	    li_idx = pos[0] * 50 + pos[1] % 50;
-	    $($('li')[li_idx]).removeClass().addClass('own-snake');
+	    $(gamesquares[li_idx]).removeClass().addClass('own-snake');
 	  }
 	  for (var k = 0; k < enemySnakePositions.length; k++) {
 	    pos = enemySnakePositions[k];
 	    li_idx = pos[0] * 50 + pos[1] % 50;
-	    $($('li')[li_idx]).removeClass().addClass('has-snake');
+	    $(gamesquares[li_idx]).removeClass().addClass('has-snake');
 	  }
 	};
 	

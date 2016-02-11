@@ -104,13 +104,7 @@ Board.prototype.checkGameOver = function () {
       return true;
     } else if (this.snake.equal(this.snake.head, this.enemySnake2.segments[i])) {
       return true;
-    } else if (this.enemySnake.equal(this.enemySnake.head, this.snake.segments[i])) {
-      return true;
-    } else if (this.enemySnake2.equal(this.enemySnake2.head, this.snake.segments[i])) {
-      return true;
     } else if (this.snake.equal(this.snake.head, this.enemySnake3.segments[i])) {
-      return true;
-    } else if (this.enemySnake3.equal(this.enemySnake3.head, this.snake.segments[i])) {
       return true;
     }
   }
