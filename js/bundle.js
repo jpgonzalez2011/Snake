@@ -52,6 +52,7 @@
 	  var board = new SnakeBoard();
 	  var gameplay;
 	  var rootEl = $('.snake').on("click", function startGame (e) {
+	    board.reset();
 	    $(e.currentTarget).removeClass("instructions")
 	    gameplay = setInterval(callback, 60);
 	    $(e.currentTarget).off("click")
@@ -70,7 +71,12 @@
 	    view.render();
 	    if (view.board.checkGameOver()) {
 	      clearInterval(gameplay);
-	      gameplay = 0;
+	      $('.snake').on("click", function startGame (e) {
+	        board.reset();
+	        $(e.currentTarget).removeClass("instructions")
+	        gameplay = setInterval(callback, 60);
+	        $(e.currentTarget).off("click")
+	      }.bind(this));
 	    }
 	  };
 	})();
@@ -157,6 +163,15 @@
 	  for (var i = 0; i < 50; i++) {
 	    this.grid.push(new Array(50));
 	  }
+	  this.snake = new Snake({direction: "N", segments: [[25,25]]});
+	  this.enemySnake = new Snake({direction: "S", segments: [[10,10]]});
+	  this.enemySnake2 = new Snake({direction: "W", segments: [[49,49]]});
+	  this.enemySnake3 = new Snake({direction: "E", segments: [[49,10]]});
+	  this.enemySnake4 = new Snake({direction: "N", segments: [[10,49]]});
+	  this.apple = this.setApple();
+	};
+	
+	Board.prototype.reset = function () {
 	  this.snake = new Snake({direction: "N", segments: [[25,25]]});
 	  this.enemySnake = new Snake({direction: "S", segments: [[10,10]]});
 	  this.enemySnake2 = new Snake({direction: "W", segments: [[49,49]]});

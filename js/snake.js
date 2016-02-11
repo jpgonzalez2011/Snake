@@ -83,6 +83,15 @@ var Board = function () {
   this.apple = this.setApple();
 };
 
+Board.prototype.reset = function () {
+  this.snake = new Snake({direction: "N", segments: [[25,25]]});
+  this.enemySnake = new Snake({direction: "S", segments: [[10,10]]});
+  this.enemySnake2 = new Snake({direction: "W", segments: [[49,49]]});
+  this.enemySnake3 = new Snake({direction: "E", segments: [[49,10]]});
+  this.enemySnake4 = new Snake({direction: "N", segments: [[10,49]]});
+  this.apple = this.setApple();
+};
+
 Board.prototype.setApple = function () {
   return [parseInt(Math.random() * 50),parseInt(Math.random() * 50)];
 };
