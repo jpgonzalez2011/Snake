@@ -66,8 +66,10 @@ li {
 
 .scoreboard {
   position: absolute;
-  right: -350px;
+  right: -279px;
   top: 200px;
+  width: 278px;
+  height: 162px;
   background: red;
   color: white;
 }
