@@ -2,6 +2,8 @@
 
 ##A Twist on the Classic Snake Game
 
+[Live - Play Now!](http://jpgonzalez2011.github.io/Snake/)
+
 **Game Mechanic**
 - Navigate the Grid using the arrow keys to turn your snake.
 - Collect the Red Dots to have your snake gain segments.
