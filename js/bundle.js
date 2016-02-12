@@ -70,6 +70,9 @@
 	    view.board.checkApple();
 	    view.render();
 	    if (view.board.checkGameOver()) {
+	      if (view.board.score > view.board.bestScore) {
+	        view.board.bestScore = view.board.score;
+	      }
 	      clearInterval(gameplay);
 	      $('.gameover').show();
 	      $('.snake').on("click", function startGame (e) {
@@ -160,6 +163,8 @@
 	  this.enemySnake3 = new Snake({direction: "E", segments: [[49,10]]});
 	  this.enemySnake4 = new Snake({direction: "N", segments: [[10,49]]});
 	  this.apple = this.setApple();
+	  this.score = 0;
+	  this.bestScore = 0;
 	};
 	
 	Board.prototype.reset = function () {
@@ -169,6 +174,7 @@
 	  this.enemySnake3 = new Snake({direction: "E", segments: [[49,10]]});
 	  this.enemySnake4 = new Snake({direction: "N", segments: [[10,49]]});
 	  this.apple = this.setApple();
+	  this.score = 0;
 	};
 	
 	Board.prototype.setApple = function () {
@@ -182,6 +188,7 @@
 	    this.enemySnake2.segments.push(this.enemySnake2.lastPosition);
 	    this.enemySnake3.segments.push(this.enemySnake3.lastPosition);
 	    this.enemySnake4.segments.push(this.enemySnake4.lastPosition);
+	    this.score = this.score + 1;
 	    this.apple = this.setApple();
 	  }
 	};
@@ -266,6 +273,7 @@
 	  var $ul = $("<ul>").addClass("snake-grid group");
 	  $("<figure>").addClass("instructions").html("<h1> Click to Start </h1> <h2> Collect red dots, don't let your head touch other snakes! </h2> <h3> Up Down Left Right Arrows to Turn! </h3>").appendTo($ul);
 	  $("<figure>").addClass("gameover").html("<h1> Game Over! </h1> <h2> Click to play again! </h2>").hide().appendTo($ul);
+	  $("<figure>").addClass("scoreboard").html("<h1 class='current-score'> Current Score:" + this.board.score + "</h1>" + "<h1 class='best-score'> Best Score:" + this.board.bestScore + "</h1>").appendTo($ul);
 	  for (var i = 0; i < 2500; i++) {
 	    var pos = [parseInt(i / 50), i % 50];
 	    $("<li>").addClass("open").data("pos", pos).appendTo($ul);
@@ -303,6 +311,7 @@
 	    li_idx = pos[0] * 50 + pos[1] % 50;
 	    $(gamesquares[li_idx]).removeClass().addClass('has-snake');
 	  }
+	  $(".scoreboard").html("<h1 class='current-score'> Current Score:" + this.board.score + "</h1>" + "<h1 class='best-score'> Best Score:" + this.board.bestScore + "</h1>");
 	};
 	
 	module.exports = View;

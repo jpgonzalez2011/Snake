@@ -71,6 +71,8 @@ var Board = function () {
   this.enemySnake3 = new Snake({direction: "E", segments: [[49,10]]});
   this.enemySnake4 = new Snake({direction: "N", segments: [[10,49]]});
   this.apple = this.setApple();
+  this.score = 0;
+  this.bestScore = 0;
 };
 
 Board.prototype.reset = function () {
@@ -80,6 +82,7 @@ Board.prototype.reset = function () {
   this.enemySnake3 = new Snake({direction: "E", segments: [[49,10]]});
   this.enemySnake4 = new Snake({direction: "N", segments: [[10,49]]});
   this.apple = this.setApple();
+  this.score = 0;
 };
 
 Board.prototype.setApple = function () {
@@ -93,6 +96,7 @@ Board.prototype.checkApple = function () {
     this.enemySnake2.segments.push(this.enemySnake2.lastPosition);
     this.enemySnake3.segments.push(this.enemySnake3.lastPosition);
     this.enemySnake4.segments.push(this.enemySnake4.lastPosition);
+    this.score = this.score + 1;
     this.apple = this.setApple();
   }
 };

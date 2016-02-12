@@ -64,6 +64,14 @@ li {
   font-size: 20px;
 }
 
+.scoreboard {
+  position: absolute;
+  right: -350px;
+  top: 200px;
+  background: red;
+  color: white;
+}
+
 .group:after {
   content: "";
   clear: both;
