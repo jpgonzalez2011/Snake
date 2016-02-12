@@ -56,16 +56,6 @@ Snake.prototype.plus = function (pos1, direction) {
   return [pos1[0] + direction[0], pos1[1] + direction[1]];
 };
 
-Snake.prototype.includedInPositions = function (pos1, positions) {
-  for (var i = 0; i < positions.length; i++){
-    var random_snake = new Snake();
-    if (random_snake.equal(pos1, positions[i])) {
-      return true;
-    }
-  }
-  return false;
-};
-
 Snake.prototype.equal = function (pos1, pos2) {
   return (pos1[0] === pos2[0] && pos1[1] === pos2[1]);
 };
@@ -113,14 +103,14 @@ Board.prototype.checkGameOver = function () {
       return true;
     }
   }
-  for (i = 0; i < this.snake.segments.length; i++) {
-      if (this.snake.equal(this.snake.head, this.enemySnake.segments[i])) {
+  for (var j = 0; j < this.snake.segments.length; j++) {
+      if (this.snake.equal(this.snake.head, this.enemySnake.segments[j])) {
       return true;
-    } else if (this.snake.equal(this.snake.head, this.enemySnake2.segments[i])) {
+    } else if (this.snake.equal(this.snake.head, this.enemySnake2.segments[j])) {
       return true;
-    } else if (this.snake.equal(this.snake.head, this.enemySnake3.segments[i])) {
+    } else if (this.snake.equal(this.snake.head, this.enemySnake3.segments[j])) {
       return true;
-    } else if (this.snake.equal(this.snake.head, this.enemySnake4.segments[i])) {
+    } else if (this.snake.equal(this.snake.head, this.enemySnake4.segments[j])) {
       return true;
     }
   }
