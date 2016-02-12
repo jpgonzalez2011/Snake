@@ -12,7 +12,7 @@
 ![StartGame](/screenshots/StartGame.png)
 ![MidGame1](/screenshots/MidGame1.png)
 ![MidGame2](/screenshots/MidGame2.png)
-![EndGame](/screenshots/EndGame.png)
+![GameOver](/screenshots/GameOver.png)
 
 **Technologies**
 - JavaScript
