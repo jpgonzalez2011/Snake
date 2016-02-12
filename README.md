@@ -9,7 +9,7 @@
 - Enjoy being able to wrap around the grid when going off the edge.. but beware of snakes sneaking up on you!
 
 **Screenshots**
-![StartGame](https://raw,github.com/jpgonzalez2011/Snake/master/screenshots/StartGame.png)
+![StartGame](https://raw,github.com/jpgonzalez2011/Snake/blob/master/screenshots/StartGame.png)
 ![MidGame1](https://raw,github.com/jpgonzalez2011/Snake/master/screenshots/MidGame1.png)
 ![MidGame2](https://raw,github.com/jpgonzalez2011/Snake/master/screenshots/MidGame2.png)
 ![EndGame](https://raw,github.com/jpgonzalez2011/Snake/master/screenshots/EndGame.png)
