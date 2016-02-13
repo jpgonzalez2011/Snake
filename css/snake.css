@@ -33,6 +33,11 @@ li {
   border: 1px solid darkblue;
 }
 
+.title {
+  font-family: 'Rock Salt', cursive;
+  padding: 0px;
+}
+
 .instructions{
   width: 300px;
   height: 300px;
@@ -66,12 +71,19 @@ li {
 
 .scoreboard {
   position: absolute;
-  right: -279px;
-  top: 200px;
-  width: 278px;
-  height: 162px;
-  background: red;
-  color: white;
+  top: -75px;
+  width: 600px;
+  height: 100px;
+  background: transparent;
+  color: black;
+}
+
+.current-score {
+  float: left;
+}
+
+.best-score {
+  float: right;
 }
 
 .group:after {
