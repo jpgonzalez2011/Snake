@@ -273,7 +273,7 @@
 	  var $ul = $("<ul>").addClass("snake-grid group");
 	  $("<figure>").addClass("instructions").html("<h1> Click to Start </h1> <h2> Collect red dots, don't let your head touch other snakes! </h2> <h3> Up Down Left Right Arrows to Turn! </h3>").appendTo($ul);
 	  $("<figure>").addClass("gameover").html("<h1> Game Over! </h1> <h2> Click to play again! </h2>").hide().appendTo($ul);
-	  $("<figure>").addClass("scoreboard group").html("<h1 class='current-score'> Current: " + this.board.score + "</h1>" + "<h1 class='best-score'> Best: " + this.board.bestScore + "</h1>").appendTo($ul);
+	  $("<figure>").addClass("scoreboard group").html("<h1 class='current-score'> Curr: " + this.board.score + "</h1>" + "<h1 class='best-score'> Best: " + this.board.bestScore + "</h1>").appendTo($ul);
 	  for (var i = 0; i < 2500; i++) {
 	    var pos = [parseInt(i / 50), i % 50];
 	    $("<li>").addClass("open").data("pos", pos).appendTo($ul);
@@ -311,7 +311,10 @@
 	    li_idx = pos[0] * 50 + pos[1] % 50;
 	    $(gamesquares[li_idx]).removeClass().addClass('has-snake');
 	  }
-	  $(".scoreboard").html("<h1 class='current-score'> Current: " + this.board.score + "</h1>" + "<h1 class='best-score'> Best: " + this.board.bestScore + "</h1>");
+	  if (this.board.score > this.board.bestScore) {
+	    this.board.bestScore = this.board.score;
+	  }
+	  $(".scoreboard").html("<h1 class='current-score'> Curr: " + this.board.score + "</h1>" + "<h1 class='best-score'> Best: " + this.board.bestScore + "</h1>");
 	};
 	
 	module.exports = View;

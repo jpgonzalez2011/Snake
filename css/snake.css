@@ -36,6 +36,8 @@ li {
 .title {
   font-family: 'Rock Salt', cursive;
   padding: 0px;
+  color: green;
+  margin: auto;
 }
 
 .instructions{
