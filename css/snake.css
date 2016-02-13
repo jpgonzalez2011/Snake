@@ -33,6 +33,10 @@ li {
   border: 1px solid darkblue;
 }
 
+.snake {
+  padding-bottom: 10px;
+}
+
 .title {
   font-family: 'Rock Salt', cursive;
   padding: 0px;
