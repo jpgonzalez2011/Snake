@@ -23,6 +23,7 @@ ul {
   list-style: none;
   background: black;
   position: relative;
+  border: 2px solid blue;
 }
 
 li {
