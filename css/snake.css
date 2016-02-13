@@ -40,6 +40,7 @@ li {
 
 .title {
   font-family: 'Rock Salt', cursive;
+  font-size: 36px;
   padding: 0px;
   color: green;
   margin: auto;
@@ -78,6 +79,7 @@ li {
 
 .scoreboard {
   position: absolute;
+  font-family: 'Rock Salt', cursive;
   top: -75px;
   width: 600px;
   height: 100px;
@@ -86,11 +88,13 @@ li {
 }
 
 .current-score {
+  font-size: 24px;
   float: left;
 }
 
 .best-score {
   float: right;
+  font-size: 24px;
 }
 
 .group:after {
