@@ -24,7 +24,10 @@
 **Cool Tricks**
 - Constant time accessing of game grid elements to speed up rendering of snakes.
 
-**For the Future?**
+**Features For the Future?**
 - Variable Grid Sizing.
 - Variable Number of Enemy Snakes.
 - Wrapping and Non-Wrapping Modes.
+
+**Future Technical Developments?**
+- Direct DOM Manipulation to further optimize rendering?
