@@ -108,11 +108,21 @@ li {
 .scoreboard {
   position: absolute;
   font-family: 'Rock Salt', cursive;
-  top: -75px;
+  bottom: -75px;
   width: 600px;
   height: 100px;
   background: transparent;
   color: black;
+  text-align: center;
+}
+
+.scoreboard-label {
+  font-size: 24px;
+  color: red;
+  float: left;
+  margin-top: 20px;
+  margin-left: 50px;
+  padding: 0px;
 }
 
 .current-score {

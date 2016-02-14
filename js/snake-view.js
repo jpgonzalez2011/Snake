@@ -28,7 +28,8 @@ View.prototype.bindEvents = function () {
       enemySnake4.turn("N");
     });
 
-    key('up', function () {
+    key('up', function (e) {
+      e.preventDefault();
       snake.turn("N");
       enemySnake.turn("W");
       enemySnake2.turn("N");
@@ -36,7 +37,8 @@ View.prototype.bindEvents = function () {
       enemySnake4.turn("E");
 
     });
-    key('down', function () {
+    key('down', function (e) {
+      e.preventDefault();
       snake.turn("S");
       enemySnake.turn("N");
       enemySnake2.turn("S");
@@ -51,7 +53,7 @@ View.prototype.setupGrid = function () {
   var $ul = $("<ul>").addClass("snake-grid group");
   $("<figure>").addClass("instructions").html("<h1> Click to Start </h1> <h2> Collect red dots, don't let your head touch other snakes! </h2> <h3> Up Down Left Right Arrows to Turn! </h1> <h3> Full Screen Recommended! </h3>").appendTo($ul);
   $("<figure>").addClass("gameover").html("<h1> Game Over! </h1> <h2> Click to play again! </h2>").hide().appendTo($ul);
-  $("<figure>").addClass("scoreboard group").html("<h1 class='current-score'> Curr: " + this.board.score + "</h1>" + "<h1 class='best-score'> Best: " + this.board.bestScore + "</h1>").appendTo($ul);
+  $("<figure>").addClass("scoreboard group").html("<h1 class='current-score'> Curr: " + this.board.score + "</h1>" + "<h1 class='scoreboard-label'> Scoreboard </h1>" + "<h1 class='best-score'> Best: " + this.board.bestScore + "</h1>").appendTo($ul);
   for (var i = 0; i < 2500; i++) {
     var pos = [parseInt(i / 50), i % 50];
     $("<li>").addClass("open").data("pos", pos).appendTo($ul);
@@ -92,7 +94,7 @@ View.prototype.render = function () {
   if (this.board.score > this.board.bestScore) {
     this.board.bestScore = this.board.score;
   }
-  $(".scoreboard").html("<h1 class='current-score'> Curr: " + this.board.score + "</h1>" + "<h1 class='best-score'> Best: " + this.board.bestScore + "</h1>");
+  $(".scoreboard").html("<h1 class='current-score'> Curr: " + this.board.score + "</h1>" + "<h1 class='scoreboard-label'> Scoreboard </h1>" + "<h1 class='best-score'> Best: " + this.board.bestScore + "</h1>");
 };
 
 module.exports = View;
