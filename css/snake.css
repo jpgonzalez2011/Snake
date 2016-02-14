@@ -44,16 +44,9 @@ li {
   text-align: center;
   padding: 0px;
   color: green;
-  width: 320px;
+  width: 600px;
   margin: 0px auto;
   position: relative;
-}
-
-.links {
-  display: block;
-  width: 130px;
-  height: 65px;
-  margin: auto;
 }
 
 .title {
@@ -72,6 +65,20 @@ li {
   color: red;
   text-align: center;
   margin: auto;
+}
+
+.github {
+  position: absolute;
+  left: 1px;
+  bottom: 1px;
+  height: 64px;
+}
+
+.linkedin {
+  position: absolute;
+  left: 80px;
+  bottom: 1px;
+  height: 64px;
 }
 
 .instructions{
