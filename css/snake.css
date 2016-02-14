@@ -38,11 +38,39 @@ li {
   padding-bottom: 10px;
 }
 
-.title {
+.main-header {
   font-family: 'Rock Salt', cursive;
   font-size: 36px;
+  text-align: center;
   padding: 0px;
   color: green;
+  width: 320px;
+  margin: 0px auto;
+  position: relative;
+}
+
+.links {
+  display: block;
+  width: 130px;
+  height: 65px;
+  margin: auto;
+}
+
+.title {
+  padding: 0px;
+  line-height: 36px;
+  margin-top: 20px;
+  width: 200px;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.byline {
+  display: block;
+  width: 250px;
+  font-size: 14px;
+  color: red;
+  text-align: center;
   margin: auto;
 }
 
