@@ -17,7 +17,6 @@ h1 {
 }
 
 ul {
-  border: 1px solid black;
   width: 600px;
   margin: auto;
   list-style: none;
@@ -45,14 +44,13 @@ li {
   padding: 0px;
   color: green;
   width: 600px;
-  margin: 0px auto;
+  margin: auto;
   position: relative;
 }
 
 .title {
   padding: 0px;
   line-height: 36px;
-  margin-top: 20px;
   width: 200px;
   margin: auto;
   margin-top: 20px;
