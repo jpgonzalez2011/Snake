@@ -11,9 +11,8 @@
 - Enjoy being able to wrap around the grid when going off the edge.. but beware of snakes sneaking up on you!
 
 **Screenshots**
-![StartGame](/screenshots/StartGame.png)
+![StartGame](/screenshots/StartGame.png = 200x200)
 ![MidGame1](/screenshots/MidGame1.png)
-![MidGame2](/screenshots/MidGame2.png)
 ![GameOver](/screenshots/GameOver.png)
 
 **Technologies**
