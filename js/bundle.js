@@ -273,7 +273,7 @@
 	View.prototype.setupGrid = function () {
 	  this.$el.append("<ul>");
 	  var $ul = $("<ul>").addClass("snake-grid group");
-	  $("<figure>").addClass("instructions").html("<h1> Click to Start </h1> <h2> Collect red dots, don't let your head touch other snakes! </h2> <h3> Up Down Left Right Arrows to Turn! </h1> <h3> Full Screen Recommended! </h3>").appendTo($ul);
+	  $("<figure>").addClass("instructions").html("<h1> Click to Start </h1> <h2> You are the <div style='display: inline; color: lightgreen;'>Green</div> Snake! Collect the <div style='display: inline; color: red;'>Red</div> dots, don't let your head touch the <div style='display: inline; color: yellow;'>Yellow</div> snakes! </h2> <h3> Up Down Left Right Arrows to Turn! </h1> <h3> Full Screen Recommended! </h3>").appendTo($ul);
 	  $("<figure>").addClass("gameover").html("<h1> Game Over! </h1> <h2> Click to play again! </h2>").hide().appendTo($ul);
 	  $("<figure>").addClass("scoreboard group").html("<h1 class='current-score'> Curr: " + this.board.score + "</h1>" + "<h1 class='scoreboard-label'> Scoreboard </h1>" + "<h1 class='best-score'> Best: " + this.board.bestScore + "</h1>").appendTo($ul);
 	  for (var i = 0; i < 2500; i++) {
