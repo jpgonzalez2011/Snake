@@ -54,6 +54,7 @@
 	  var rootEl = $('.snake').on("click", function startGame (e) {
 	    $('.instructions').hide();
 	    board.reset();
+	    view.bindEvents();
 	    gameplay = setInterval(callback, 60);
 	    $(e.currentTarget).off("click")
 	  }.bind(this));
@@ -61,7 +62,6 @@
 	
 	  view.setupGrid();
 	  var callback = function () {
-	    view.bindEvents();
 	    view.board.snake.move();
 	    view.board.enemySnake.move();
 	    view.board.enemySnake2.move();
