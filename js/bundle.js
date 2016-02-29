@@ -78,6 +78,7 @@
 	      $('.snake').on("click", function startGame (e) {
 	        board.reset();
 	        $('.gameover').hide();
+	        view.bindEvents();
 	        gameplay = setInterval(callback, 60);
 	        $(e.currentTarget).off("click")
 	      }.bind(this));
