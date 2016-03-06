@@ -96,7 +96,7 @@ Board.prototype.checkApple = function () {
     this.enemySnake2.segments.push(this.enemySnake2.lastPosition);
     this.enemySnake3.segments.push(this.enemySnake3.lastPosition);
     this.enemySnake4.segments.push(this.enemySnake4.lastPosition);
-    this.score = this.score + 1;
+    this.score += 1;
     this.apple = this.setApple();
   }
 };
@@ -108,15 +108,14 @@ Board.prototype.checkGameOver = function () {
     }
   }
   for (var j = 0; j < this.snake.segments.length; j++) {
-      if (this.snake.equal(this.snake.head, this.enemySnake.segments[j])) {
-      return true;
-    } else if (this.snake.equal(this.snake.head, this.enemySnake2.segments[j])) {
-      return true;
-    } else if (this.snake.equal(this.snake.head, this.enemySnake3.segments[j])) {
-      return true;
-    } else if (this.snake.equal(this.snake.head, this.enemySnake4.segments[j])) {
-      return true;
-    }
+      if (
+        this.snake.equal(this.snake.head, this.enemySnake.segments[j]) ||
+        this.snake.equal(this.snake.head, this.enemySnake2.segments[j]) ||
+        this.snake.equal(this.snake.head, this.enemySnake3.segments[j]) ||
+        this.snake.equal(this.snake.head, this.enemySnake4.segments[j])
+      ) {
+        return true;
+      }
   }
   return false;
 };
