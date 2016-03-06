@@ -24,9 +24,6 @@
     view.board.checkApple();
     view.render();
     if (view.board.checkGameOver()) {
-      if (view.board.score > view.board.bestScore) {
-        view.board.bestScore = view.board.score;
-      }
       clearInterval(gameplay);
       $('.gameover').show();
       $('.snake').on("click", function startGame (e) {

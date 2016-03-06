@@ -91,9 +91,6 @@ View.prototype.render = function () {
     li_idx = pos[0] * 50 + pos[1] % 50;
     $(gamesquares[li_idx]).removeClass().addClass('has-snake');
   }
-  if (this.board.score > this.board.bestScore) {
-    this.board.bestScore = this.board.score;
-  }
   $(".scoreboard").html("<h1 class='current-score'> Curr: " + this.board.score + "</h1>" + "<h1 class='scoreboard-label'> Scoreboard </h1>" + "<h1 class='best-score'> Best: " + this.board.bestScore + "</h1>");
 };
 

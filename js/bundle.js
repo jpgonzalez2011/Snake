@@ -70,9 +70,6 @@
 	    view.board.checkApple();
 	    view.render();
 	    if (view.board.checkGameOver()) {
-	      if (view.board.score > view.board.bestScore) {
-	        view.board.bestScore = view.board.score;
-	      }
 	      clearInterval(gameplay);
 	      $('.gameover').show();
 	      $('.snake').on("click", function startGame (e) {
@@ -190,6 +187,9 @@
 	    this.enemySnake3.segments.push(this.enemySnake3.lastPosition);
 	    this.enemySnake4.segments.push(this.enemySnake4.lastPosition);
 	    this.score += 1;
+	    if (this.score > this.bestScore) {
+	      this.bestScore = this.score;
+	    }
 	    this.apple = this.setApple();
 	  }
 	};
@@ -201,14 +201,14 @@
 	    }
 	  }
 	  for (var j = 0; j < this.snake.segments.length; j++) {
-	      if (
-	        this.snake.equal(this.snake.head, this.enemySnake.segments[j]) ||
-	        this.snake.equal(this.snake.head, this.enemySnake2.segments[j]) ||
-	        this.snake.equal(this.snake.head, this.enemySnake3.segments[j]) ||
-	        this.snake.equal(this.snake.head, this.enemySnake4.segments[j])
-	      ) {
-	        return true;
-	      }
+	    if (
+	      this.snake.equal(this.snake.head, this.enemySnake.segments[j]) ||
+	      this.snake.equal(this.snake.head, this.enemySnake2.segments[j]) ||
+	      this.snake.equal(this.snake.head, this.enemySnake3.segments[j]) ||
+	      this.snake.equal(this.snake.head, this.enemySnake4.segments[j])
+	    ) {
+	      return true;
+	    }
 	  }
 	  return false;
 	};
@@ -312,9 +312,6 @@
 	    pos = enemySnakePositions[k];
 	    li_idx = pos[0] * 50 + pos[1] % 50;
 	    $(gamesquares[li_idx]).removeClass().addClass('has-snake');
-	  }
-	  if (this.board.score > this.board.bestScore) {
-	    this.board.bestScore = this.board.score;
 	  }
 	  $(".scoreboard").html("<h1 class='current-score'> Curr: " + this.board.score + "</h1>" + "<h1 class='scoreboard-label'> Scoreboard </h1>" + "<h1 class='best-score'> Best: " + this.board.bestScore + "</h1>");
 	};
