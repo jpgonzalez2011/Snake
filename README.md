@@ -1,6 +1,6 @@
-#SnakeS
+# SnakeS
 
-##A Twist on the Classic Snake Game
+## A Twist on the Classic Snake Game
 
 [Live - Play Now!](http://jpgonzalez2011.github.io/Snake/)
 

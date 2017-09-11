@@ -74,17 +74,17 @@ li {
 
 .linkedin {
   position: absolute;
-  left: 80px;
-  bottom: 1px;
-  height: 64px;
-}
-
-.homepage {
-  position: absolute;
   right: 1px;
   bottom: 1px;
   height: 64px;
 }
+
+/* .homepage {
+  position: absolute;
+  right: 1px;
+  bottom: 1px;
+  height: 64px;
+} */
 
 .instructions{
   width: 300px;
